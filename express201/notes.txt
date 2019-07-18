@@ -15,3 +15,7 @@ c) Response
 - res.sendFile -- send a file!
 - res.locals - is available through the res
 - res.json(jsonp) - sends json back as application/json
+
+
+-res.render -- server side rendering
+-res.json -- API/JSON needs
