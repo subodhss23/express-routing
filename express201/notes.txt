@@ -1,0 +1,17 @@
+Useful notes:-
+
+a) Middleware 
+- express.json()  --- body parser
+- express.urlencoded() -- body parser
+- helment() -- 3rd party module
+
+b) Request
+- req.ip -- contains requester id
+- req.path -- contains the requested path
+- req.body - parsed data
+
+c) Response
+- res.send(.end()) -- send text/html
+- res.sendFile -- send a file!
+- res.locals - is available through the res
+- res.json(jsonp) - sends json back as application/json
