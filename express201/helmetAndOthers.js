@@ -1,7 +1,10 @@
 
 const express = require('express');
+const helment = require('helmet');
+
 const app = express();
- 
+
+app.use(helmet());
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
