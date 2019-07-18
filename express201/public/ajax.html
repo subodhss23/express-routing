@@ -12,7 +12,8 @@
                           }
                        })
     
-    onRequest.then((response) => {
+    onRequest.then((response, statusCode, xmlhtpo) => {
       console.log(`This is the response from ajax.html: ${response}`);
+      console.log(xmlhtpo)
     })
   </script>
