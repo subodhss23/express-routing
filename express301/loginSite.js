@@ -33,12 +33,19 @@ app.post('/process_login', function(req, res, next){
         // res.cookie takes two args:
         // 1. name of the cookie
         // 2. value to set it to
+        res.cookie('username', username);
+        //res.redirect takes 1 args: where to send user
+        res.redirect('/welcome');
       }
 
   
   // req.body is made by urlencoded., which pareses
   // the http message for sent data
-  res.json(req.body);
+  // res.json(req.body);
+})
+
+app.get('/welcome', function(req, res, next){
+  res.send('<h1>Welcome, you have successfully logged in.</h1>')
 })
 
 app.listen(3000, function(){
