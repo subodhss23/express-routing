@@ -27,7 +27,7 @@ app.use( function(req, res, next){
 
 app.get('/', function(req, res, next){
   console.log(req.param())
-  res.send('Sanity check');
+  res.send('Welcome to the HOMEPAGE!!!');
 })
 
 app.get('/login', function(req, res, next){
@@ -75,13 +75,45 @@ app.get('/welcome', function(req, res, next){
 /**is a router, anytime somethings has a : in front it is a wildcard!
  * wildcard, will match anything in the slot
  */
-app.get('/story/:storyId', function(req, res, next){
+
+ /** app.param() - takes 2 args:
+ * 1. param to look for in the router
+ * 2. the callback to run (with the ussuals)
+ */
+
+ app.param('id', function(req, res, next, id){
+    console.log('Params called' ,id);
+    //checking if id has something to do with stories... 
+    next();
+ })
+
+app.get('/story/:id', function(req, res, next){
   /** the req.params object always exists,
    * it will have a property for each wildcar in the route
    */
   res.send(`<h1>Story ${req.params.storyId}</h1>`);
-  console.log(req.params.storyId);
+  next()
+})
 
+// app.get('story/:id', function(req, res, next){
+//   res.send(`<h1> Story ${req.params.storyId} - ${req.params.link}</h1>`);
+// })
+
+
+app.get('/statement', function(req, res, next){
+ // This WILL render the statement in the browser, which we do not want
+  //res.sendFile(path.join(__dirname, 'userStatement/BankStatement.png'));
+  // app has a download method! Takes 2 args:
+  // 1. filename
+  // 2. optionally, what you want the filename to download as
+
+  //download is setting the headers
+  // 1. content - disposition to attachment, with a filename of the 2nd arg
+  res.download(path.join(__dirname,'userStatement/BankStatement.png'), 'JimsStatement.png');
+
+  // attachment only sets the header for content-disposition to attachment
+  // if you provide a file, it will also set the gilename
+  // res.attachment(path.join(__dirname,'userStatments/BackStatement.png'), 'JimsStatement.png');
 })
 
 app.get('/logout', function(req, res, next){
